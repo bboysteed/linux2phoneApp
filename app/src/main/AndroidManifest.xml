@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.linux2phonee">
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <!--    <uses-permission android:name="android.permission.READ_LOGS" />-->
+    <!--    <uses-permission android:name="android.permission.DUMP" />-->
+    <!--    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" />-->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <!--    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" tools:ignore="ProtectedPermissions" />-->
+    <uses-permission
+        android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+
+
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/milkcat"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:requestLegacyExternalStorage="true"
+        android:usesCleartextTraffic="true"
+        >
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:allowTaskReparenting="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
+        <activity
+            android:name=".TermuxFileReceiverActivity"
+            android:excludeFromRecents="true"
+            android:label="@string/app_name"
+            android:noHistory="true"
+            android:resizeableActivity="true"
+            android:taskAffinity="linux2phone.filereceiver">
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="*/*" />
+<!--                <data android:mimeType="*/*" />-->
+<!--                <data android:mimeType="*/*" />-->
+<!--                <data android:mimeType="*/*" />-->
+<!--                <data android:mimeType="*/*" />-->
+<!--                <data android:mimeType="*/*" />-->
+<!--                <data android:mimeType="*/*" />-->
+<!--                <data android:mimeType="*/*" />-->
+<!--                <data android:mimeType="*/*" />-->
+<!--                <data android:mimeType="*/*" />-->
+<!--                <data android:mimeType="*/*" />-->
+<!--                <data android:mimeType="*/*" />-->
+<!--                <data android:mimeType="*/*" />-->
+<!--                ""},
+　　{".apk", "application/vnd.android.package-archive"},
+　　{".asf", "video/x-ms-asf"},
+　　{".avi", "video/x-msvideo"},
+　　{".bin", "application/octet-stream"},
+　　{".bmp", "image/x-ms-bmp" or "image/vnd.wap.wbmp"},
+　　{".c", "text/plain"},
+　　{".class", "application/octet-stream"},
+　　{".conf", "text/plain"},
+　　{".cpp", "text/plain"},
+　　{".doc", "application/msword"},
+　　{".exe", "application/octet-stream"},
+　　{".gif", "image/gif"},
+　　{".gtar", "application/x-gtar"},
+　　{".gz", "application/x-gzip"},
+　　{".h", "text/plain"},
+　　{".htm", "text/html"},
+　　{".html", "text/html"},
+　　{".jar", "application/java-archive"},
+　　{".java", "text/plain"},
+　　{".jpeg", "image/jpeg"},
+　　{".jpg", "image/jpeg"},
+　　{".js", "application/x-javascript"},
+　　{".log", "text/plain"},
+　　{".m3u", "audio/x-mpegurl"},
+　　{".m4a", "audio/mp4a-latm"},
+　　{".m4b", "audio/mp4a-latm"},
+　　{".m4p", "audio/mp4a-latm"},
+　　{".m4u", "video/vnd.mpegurl"},
+　　{".m4v", "video/x-m4v"},
+　　{".mov", "video/quicktime"},
+　　{".mp2", "audio/x-mpeg"},
+　　{".mp3", "audio/x-mpeg"},
+　　{".mp4", "video/mp4"},
+　　{".mpc", "application/vnd.mpohun.certificate"},
+　　{".mpe", "video/mpeg"},
+　　{".mpeg", "video/mpeg"},
+　　{".mpg", "video/mpeg"},
+       {".mpg4", "video/mp4"},
+　　{".mpga", "audio/mpeg"},
+　　{".msg", "application/vnd.ms-outlook"},
+　　{".ogg", "audio/ogg"},
+　　{".pdf", "application/pdf"},
+　　{".png", "image/png"},
+　　{".pps", "application/vnd.ms-powerpoint"},
+　　{".ppt", "application/vnd.ms-powerpoint"},
+　　{".prop", "text/plain"},
+　　{".rar", "application/x-rar-compressed"},
+　　{".rc", "text/plain"},
+　　{".rmvb", "audio/x-pn-realaudio"},
+　　{".rtf", "application/rtf"},
+　　{".sh", "text/plain"},
+　　{".tar", "application/x-tar"},
+　　{".tgz", "application/x-compressed"},
+　　{".txt", "text/plain"},
+　　{".wav", "audio/x-wav"},
+　　{".wma", "audio/x-ms-wma"},
+　　{".wmv", "audio/x-ms-wmv"},
+　　{".wps", "application/vnd.ms-works"},
+　　//{".xml", "text/xml"}, 　　{".xml", "text/plain"},
+　　{".z", "application/x-compress"},
+　　{".zip", "application/zip"},
+-->
+            </intent-filter>
+            <intent-filter >
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="*/*" />
+            </intent-filter>
+            </activity>
+        <provider
+            android:name=".TermuxDocumentsProvider"
+            android:authorities="linux2phone.documents"
+            android:exported="true"
+            android:grantUriPermissions="true"
+            android:permission="android.permission.MANAGE_DOCUMENTS">
+            <intent-filter>
+                <action android:name="android.content.action.DOCUMENTS_PROVIDER" />
+            </intent-filter>
+        </provider>
+    </application>
+
+
+
+</manifest>

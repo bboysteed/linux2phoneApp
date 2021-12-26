@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">linux2phonee</string>
+    <string name="action_settings">Settings</string>
+    <string name="appslogan">linux2phone Transition</string>
+    <string name="urls">urls:</string>
+    <string name="url1">http://192.168.50.168:9000/upload</string>
+    <string name="url2">http://10.8.0.2:9000/upload</string>
+    <string name="url3">http://192.168.1.9:9000/upload</string>
+</resources>
