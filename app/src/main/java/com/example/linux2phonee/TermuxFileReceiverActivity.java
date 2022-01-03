@@ -424,10 +424,10 @@ public class TermuxFileReceiverActivity extends Activity {
                 res = strBuf.toString();
                 JSONObject jb = new JSONObject(res);
                 if ((jb.getInt("c") == 200) && (jb.getString("m").equals("ok"))) {
-                    this.tv.append(this.uploadurl.concat(" --上传成功！\n"));
+                    textView3.append(this.uploadurl.concat(" --上传成功！\n"));
                     uploadSuccess = true;
                 }else{
-                    this.tv.append(this.uploadurl.concat(" --上传失败！\n"));
+                    textView3.append(this.uploadurl.concat(" --上传失败！\n"));
 
                 }
                 ;
@@ -437,7 +437,12 @@ public class TermuxFileReceiverActivity extends Activity {
 
             } catch (Exception e) {
                 System.out.println("无法链接主机");
-                this.tv.append(this.uploadurl.concat("--无法链接!\n"));
+
+                try {
+                    textView3.append(this.uploadurl.concat("--无法链接!\n"));
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
                 e.printStackTrace();
             } finally {
                 if (conn != null) {

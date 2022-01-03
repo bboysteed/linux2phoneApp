@@ -1,6 +1,8 @@
 package com.example.linux2phonee;
 
 import android.Manifest;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -14,10 +16,14 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.WebView;
+import android.widget.Button;
+import android.widget.Toast;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -35,17 +41,37 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(MainActivity.this,TermuxFileReceiverActivity.class);
+                intent.setAction("change");
+
+                startActivity(intent);
             }
         });
 
+        WebView webv = findViewById(R.id.webView);
+        webv.getSettings().setJavaScriptEnabled(true);
+        webv.loadUrl("http://192.168.50.168:9000");
 
+        Button shareqq = findViewById(R.id.button_qq);
+        Button sharewecaht = findViewById(R.id.button_wechat);
+        shareqq.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Context ctx = getBaseContext();
+                shareQQ(ctx,"qq消息");
+            }
+        });
+        sharewecaht.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Context ctx = getBaseContext();
+                shareWechatFriend(ctx,"微信消息");
+            }
+        });
 //          Uri uri = intent.getData();
 
 //          String str = Uri.decode(uri.getEncodedPath());
@@ -73,7 +99,34 @@ public class MainActivity extends AppCompatActivity {
 //    private promptNameAndSave(){
 //
 //    }
-
+public static void shareQQ(Context mContext, String content) {
+//    if (PlatformUtil.isInstallApp(mContext, PlatformUtil.PACKAGE_MOBILE_QQ)) {
+        Intent intent = new Intent("android.intent.action.SEND");
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_SUBJECT, "分享");
+        intent.putExtra(Intent.EXTRA_TEXT, content);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setComponent(new ComponentName("com.tencent.mobileqq", "com.tencent.mobileqq.activity.JumpActivity"));
+        mContext.startActivity(intent);
+//    } else {
+//        Toast.makeText(mContext, "您需要安装QQ客户端", Toast.LENGTH_LONG).show();
+//    }
+}
+    public void shareWechatFriend(Context context, String content) {
+//        if (PlatformUtil.isInstallApp(context, PlatformUtil.PACKAGE_WECHAT)) {
+            Intent intent = new Intent();
+            ComponentName cop = new ComponentName("com.tencent.mm", "com.tencent.mm.ui.tools.ShareImgUI");
+            intent.setComponent(cop);
+            intent.setAction(Intent.ACTION_SEND);
+            intent.putExtra("android.intent.extra.TEXT", content);
+//            intent.putExtra("sms_body", content);
+            intent.putExtra("Kdescription", !TextUtils.isEmpty(content) ? content : "");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            context.startActivity(intent);
+//        } else {
+//            Toast.makeText(context, "您需要安装微信客户端", Toast.LENGTH_LONG).show();
+//        }
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
